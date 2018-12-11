@@ -2,3 +2,23 @@ extends _layouts/base
 
 block content
     main.home
+        .container
+            .row
+                .col-xs-24
+                    ul.home__tabs-selector
+                        li.-active(data-target="0") Open videos in Modal
+                        li(data-target="1") Open videos in Place
+                    .home__tab.-active.js-inmodal(data-tab="0")
+                        h3.home__videos-title Videos in Modal
+                        .home__videos-wrapper
+                            
+                    .home__tab.js-inplace(data-tab="1")
+                        h3.home__videos-title Videos in Place
+                        .home__videos-wrapper
+
+    .home__modal
+        .home__modal__backdrop
+        .home__modal__container
+            .home__video
+                .home__video__contents
+                    iframe.home__video__iframe.home__modal__iframe(allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", src="", allowfullscreen)

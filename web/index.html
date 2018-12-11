@@ -1,0 +1,54 @@
+<!DOCTYPE html><html class='no-js' lang='en'>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Implus Labs - Youtube API</title>
+  <meta name="description" content="Implus Devs playground for testing functionalities and POCs">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+  <!--[if lt IE 11]>
+  <p class='browsehappy'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/'>upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <header class="header">
+    <div class="container header__container">
+      <h1 class="header__title">Implus<span>Labs</span></h1>
+      <h2 class="header__subtitle">Youtube API</h2>
+    </div>
+  </header>
+  <main class="home">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-24">
+          <ul class="home__tabs-selector">
+            <li data-target="0" class="-active">Open videos in Modal</li>
+            <li data-target="1">Open videos in Place</li>
+          </ul>
+          <div data-tab="0" class="home__tab -active js-inmodal">
+            <h3 class="home__videos-title">Videos in Modal</h3>
+            <div class="home__videos-wrapper"></div>
+          </div>
+          <div data-tab="1" class="home__tab js-inplace">
+            <h3 class="home__videos-title">Videos in Place</h3>
+            <div class="home__videos-wrapper"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="home__modal">
+    <div class="home__modal__backdrop"></div>
+    <div class="home__modal__container">
+      <div class="home__video">
+        <div class="home__video__contents">
+          <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" src="" allowfullscreen class="home__video__iframe home__modal__iframe"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer"></footer>
+  <script src="./scripts/main.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/wow/0.1.12/wow.min.js"></script>
+  <script>new WOW().init();</script>
+</body></html>
