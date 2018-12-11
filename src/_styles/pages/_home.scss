@@ -45,7 +45,7 @@
 
     &__videos-wrapper {
         display: flex;
-        justify-content: space-evenly;       
+        justify-content: space-between;       
         flex-wrap: wrap;
         padding: 0 20px; 
     }
@@ -57,11 +57,11 @@
 
     &__video {
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 3%;
         cursor: pointer;
 
         @include mq(sm) {
-            width: 30%;
+            width: 31%;
         }
 
         &__contents {

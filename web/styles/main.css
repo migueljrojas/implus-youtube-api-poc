@@ -2773,9 +2773,9 @@ button._button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding: 0 20px;
@@ -2788,13 +2788,13 @@ button._button {
 
 .home__video {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 3%;
   cursor: pointer;
 }
 
 @media (min-width: 768px) {
   .home__video {
-    width: 30%;
+    width: 31%;
   }
 }
 

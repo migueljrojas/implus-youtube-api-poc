@@ -36,11 +36,11 @@ var Header = function() {
         return videos.map(function(video){
             var videoId;
 
-            if (video.id) {
-                videoId = video.id.videoId;
-            } else {
+            if (video.snippet.resourceId) {
                 videoId = video.snippet.resourceId.videoId;
-            }
+            } else {
+                videoId = video.id.videoId;
+            }            
 
             return {
                 image: video.snippet.thumbnails.high.url,
