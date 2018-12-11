@@ -11644,7 +11644,10 @@ return jQuery;
 var Header = function() {
     var apiKey = 'AIzaSyBu7PFXb5dJvaPQPxhYM3xrbuMM7nvz37o';
     var urlPLaylistId = getUrlParameter('playlistID');
+    var urlChannelId = getUrlParameter('channelID');
+    var channelID = urlChannelId ? urlChannelId : 'UCxQpvQyFDo4eHIPuWpms42A';
     var playlistID = urlPLaylistId ? urlPLaylistId : 'PLCsLkknsxL7ky_nf10MQVJVKPs9YtfCSC';
+    var listMode = urlPLaylistId ? 'playlist' : 'channel';
     var videoContainer = $('.home__videos-wrapper');
     var tabSelectors = $('[data-target]');
     var tabs = $('.home__tab');
@@ -11671,28 +11674,46 @@ var Header = function() {
 
     function getVideoData(videos) {
         return videos.map(function(video){
+            var videoId;
+
+            if (video.id) {
+                videoId = video.id.videoId;
+            } else {
+                videoId = video.snippet.resourceId.videoId;
+            }
+
             return {
                 image: video.snippet.thumbnails.high.url,
-                id: video.snippet.resourceId.videoId
+                id: videoId
             }
         });
     }
 
     function appendVideos(videos, container) {
         videos.forEach(function(video){
-            $(
-                '<div class="home__video" data-video="'+ video.id +'">' +
-                    '<div class="home__video__contents">' +
-                        '<img src="'+ video.image +'" />' +
-                        '<iframe class="home__video__iframe" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" src="" allowfullscreen />' + 
-                    '</div>' +
-                '</div>'
-            ).appendTo(container);
+            if (video.id) {
+                $(
+                    '<div class="home__video" data-video="'+ video.id +'">' +
+                        '<div class="home__video__contents">' +
+                            '<img src="'+ video.image +'" />' +
+                            '<iframe class="home__video__iframe" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" src="" allowfullscreen />' + 
+                        '</div>' +
+                    '</div>'
+                ).appendTo(container);
+            }            
         });
     }
     
-    function getVideosList(key, playlist) {
-        $.getJSON('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=12&playlistId=' + playlist + '&key=' + key + '&callback=?')
+    function getVideosList(key, mode) {
+        var url;
+
+        if (mode !== 'channel') {
+            url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,id&maxResults=12&playlistId=' + playlistID + '&key=' + key + '&callback=?';
+        } else {
+            url = 'https://www.googleapis.com/youtube/v3/search?part=snippet,id&maxResults=12&channelId=' + channelID + '&key=' + key + '&callback=?';
+        }
+        
+        $.getJSON(url)
         .done(function(data) {
             console.log( "success", data );
             var videos = getVideoData(data.items);
@@ -11706,7 +11727,7 @@ var Header = function() {
         });
     }
 
-    getVideosList(apiKey, playlistID);
+    getVideosList(apiKey, listMode);
 
     tabSelectors.on('click', function() {
         var $this = $(this);
