@@ -43,6 +43,16 @@
         }
     }
 
+    &__channel-heading {
+        @include padd(bottom, half);
+    }
+
+    &__channel-title {
+        margin: 0;
+        font-weight: 300;
+        color: $mainColor;
+    }
+
     &__videos-wrapper {
         display: flex;
         justify-content: space-between;       

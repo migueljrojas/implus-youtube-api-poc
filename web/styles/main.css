@@ -2769,6 +2769,28 @@ button._button {
   pointer-events: all;
 }
 
+.home__channel-heading {
+  padding-bottom: 8%;
+}
+
+@media (min-width: 768px) {
+  .home__channel-heading {
+    padding-bottom: 6%;
+  }
+}
+
+@media (min-width: 992px) {
+  .home__channel-heading {
+    padding-bottom: 4%;
+  }
+}
+
+.home__channel-title {
+  margin: 0;
+  font-weight: 300;
+  color: #053f7a;
+}
+
 .home__videos-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;

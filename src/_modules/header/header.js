@@ -12,6 +12,31 @@ var Header = function() {
     var tabSelectors = $('[data-target]');
     var tabs = $('.home__tab');
     var modal = $('.home__modal');
+    var heading = $('.home__channel-heading');
+
+    function setTitleInfo(data) {
+        console.log('Set Title data', data);
+        var channelTitle,
+            playlistTitle;
+
+        if (data.kind === 'youtube#searchListResponse') {
+            channelTitle = data.items[1].snippet.channelTitle;
+            
+            $(
+                '<h1 class="home__channel-title">' +
+                    channelTitle +
+                '</h1>'
+            ).appendTo(heading);
+        } else {
+            channelTitle = data.items[0].snippet.channelTitle;
+
+            $(
+                '<h1 class="home__channel-title">' +
+                    channelTitle +
+                '</h1>'
+            ).appendTo(heading);
+        }
+    }
 
     function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
@@ -75,8 +100,11 @@ var Header = function() {
         
         $.getJSON(url)
         .done(function(data) {
-            console.log( "success", data );
+            console.log( "success" );
             var videos = getVideoData(data.items);
+
+            setTitleInfo(data);
+            
             appendVideos(videos, videoContainer);
         })
         .fail(function() {
